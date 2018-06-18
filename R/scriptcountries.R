@@ -6,7 +6,7 @@ library(rjson)
 library(readxl)
 library(extrafont)
 
-divipola.R <- read.table("DIVIPOLA_20160930.csv", sep=";", header=T)
+divipola.R <- read.table("Data/DIVIPOLA_20160930.csv", sep=";", header=T)
 
 
 # Base de datos con solo cabeceras municipales 
@@ -21,11 +21,11 @@ cabeceras <- divipola.R %>% select(code_dept=Código.Departamento,
   filter(tipo_centro == "CABECERA MUNICIPAL (CM)")  
 
 
-docentes <- read_xlsx("Docentes.xlsx") 
+docentes <- read_xlsx("Data/Docentes.xlsx") 
 
-centroids <- read_xlsx("centroids.xlsx") 
+centroids <- read_xlsx("Data/centroids.xlsx") 
 
-spanish <- read_xlsx("centroids.xlsx", sheet = "Spanish")
+spanish <- read_xlsx("Data/centroids.xlsx", sheet = "Spanish")
 
 spanish <- na.omit(spanish)
 
@@ -51,7 +51,7 @@ cant_docmuj <- docentes %>% filter(docentes$SEXO == "Mujeres") %>% group_by(CODS
 
 
 
-countries <- rgdal::readOGR("countriesgeo.json")
+countries <- rgdal::readOGR("GeoData/countriesgeo.json")
 
 countries@data
 
