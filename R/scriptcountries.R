@@ -230,7 +230,7 @@ for (k in c(1 , 2 , 3)) {
 countriesmap <- countriesmap %>%
   addLayersControl(baseGroups = names.esri , 
                    options = layersControlOptions(collapsed = T)) %>%
-  setView(lat = 42.796626414,  lng = 12.07001339,  zoom = 2)%>%
+  setView(lat = 0,  lng = 0,  zoom = 2)%>%
   addPolygons(stroke = T ,  smoothFactor = 0.05 ,   color = "gray" ,  weight = 1 , 
               fillColor = ~binpal(CANT_DOC) , 
               label = labels_countries ,  labelOptions = labelOptions( style = list("font-weight" = "normal" ,  padding = "3px 8px") ,   textsize = "12px" , direction = "auto"   ) ,  dashArray = "3" , 
@@ -246,7 +246,7 @@ countriesmap <- countriesmap %>%
   addMiniMap(position = "bottomleft" , zoomAnimation = T ,  toggleDisplay = T ,  autoToggleDisplay = T)%>%
   addEasyButton(easyButton(
     icon = "glyphicon-screenshot" ,  title = "Retornar" , 
-    onClick = JS("function(btn ,  map){ map.setView(L.latLng(42.796626414 , 12.07001339) ,  2); }")))%>%
+    onClick = JS("function(btn ,  map){ map.setView(L.latLng(0 , 0) ,  2); }")))%>%
   addLabelOnlyMarkers(lat = ~LATITUD,  lng = ~LONGITUD , label =  ~paste0(countries$NOMBRE) ,   labelOptions = labelOptions(noHide = T ,  direction = 'top' ,  textOnly = T , textsize = "10px") )%>%
   addScaleBar(position = "bottomleft" , scaleBarOptions(metric = T ,  imperial =  F))
 
