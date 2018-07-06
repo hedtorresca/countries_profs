@@ -1,4 +1,4 @@
-###### Docentes
+###### Docentes por lugar de último nivel de formación ###
 
 ##### Librería requeridas
 
@@ -43,7 +43,7 @@ spanish <- na.omit(spanish)
 
 # Cuenta el número de docentes por país
 
-cant_doc <- docentes %>% group_by(CODS_PAISU, PAIS_U) %>% summarise(Total=n())
+cant_doc <- docentes %>% group_by(CODS_PAISU) %>% summarise(Total=n())
 
 # Cuenta de docentes por nivel de formación
 
@@ -280,6 +280,7 @@ labels_medica <- sprintf(
 ) %>% lapply(htmltools::HTML)
 
 
+# Mapa
 
 countriesmapnivel <- leaflet(countries)
 
@@ -532,6 +533,8 @@ docentes2$Latitude2 <- as.numeric(str_replace(docentes2$Latitude2, ",", "."))
 docentes2$Longitude[docentes2$CODS_PAISU == "COL"] <- docentes2$Longitude2[docentes2$CODS_PAISU == "COL"]
 docentes2$Latitude[docentes2$CODS_PAISU== "COL"] <- docentes2$Latitude2[docentes2$CODS_PAISU == "COL"]
 
+docentes2$Longitude[docentes2$CODS_PAISU == "DEU"] <- docentes2$Longitude2[docentes2$CODS_PAISU == "DEU"]
+docentes2$Latitude[docentes2$CODS_PAISU== "DEU"] <- docentes2$Latitude2[docentes2$CODS_PAISU == "DEU"]
 
 labels_hombres <- sprintf(
   "<strong> %s </strong> <br/> %g  docentes" , 
@@ -554,8 +557,8 @@ icon_sexo <- icons(
 # Etiquetas para los íconos
 
 labelsexo <- sprintf(
-  "%s <strong> %s </strong>",
-  "De", docentes2$UNIVERSIDAD
+  "%s <strong> %s </strong> </br> %s ",
+  "De", docentes2$UNIVERSIDAD, docentes2$FACULTAD_O
 ) %>% lapply(htmltools::HTML)
 
 labelhombre <- sprintf(
